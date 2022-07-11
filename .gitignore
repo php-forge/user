@@ -1,0 +1,23 @@
+#code coverage
+/code_coverage
+
+# composer vendor dir
+/vendor
+/composer.lock
+
+#node_modules
+/node_modules
+
+# phpstorm project files
+.idea
+
+# phpunit
+phpunit.phar
+/phpunit.xml
+.phpunit.result.cache
+
+#yii3 config packages
+/config/packages
+
+# windows thumbnail cache
+Thumbs.db

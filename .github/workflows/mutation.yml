@@ -1,0 +1,16 @@
+on:
+  - pull_request
+  - push
+
+name: mutation test
+
+jobs:
+  infection:
+    uses: php-forge/reusable-actions/.github/workflows/roave-infection.yml@main
+    with:
+      os: >-
+        ['ubuntu-latest']
+      php: >-
+        ['8.1']
+    secrets:
+      STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}

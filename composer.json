@@ -1,0 +1,37 @@
+{
+    "name": "php-forge/template",
+    "type": "library",
+    "description": "_____",
+    "keywords": [
+        "_____"
+    ],
+    "license": "BSD-3-Clause",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "roave/infection-static-analysis-plugin": "*",
+        "vimeo/psalm": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Template\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Template\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
