@@ -119,15 +119,5 @@
             "foxy/foxy": true,
             "codeception/c3": true
         }
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "d:/php-forge/yii-form-validator"
-        },
-        {
-            "type": "path",
-            "url": "d:/php-forge/service"
-        }
-    ]
+    }
 }
