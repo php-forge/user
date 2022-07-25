@@ -47,3 +47,12 @@ jobs:
           ./yii migrate/up --no-interaction
           php -S 127.0.0.1:8080 -t tests/App/public > tests/_output/runtime/yii.log 2>&1 &
           vendor/bin/codecept run
+
+      - name: Archive codeception results
+        uses: actions/upload-artifact@v2
+        with:
+           name: output
+          path: ./runtime/tests/_output
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v2
