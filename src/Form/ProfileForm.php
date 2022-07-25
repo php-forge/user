@@ -33,7 +33,7 @@ final class ProfileForm extends FormValidator
 
     public function __construct(private ProfileRepository $profileRepository, private TranslatorInterface $translator)
     {
-        parent::__construct($translator);
+        parent::__construct();
     }
 
     public function getLabels(): array
@@ -104,6 +104,9 @@ final class ProfileForm extends FormValidator
         );
     }
 
+    /**
+     * @psalm-return string[]
+     */
     private function profileTranslate(): array
     {
         return [

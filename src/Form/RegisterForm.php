@@ -133,7 +133,7 @@ final class RegisterForm extends FormValidator
         foreach ($data as $name => $value) {
             $name = (new Inflector())->toCamelCase($name);
 
-            if ($this->hasAttribute($name)) {
+            if ($this->has($name)) {
                 $this->setValue($name, $value);
             }
         }
@@ -146,7 +146,7 @@ final class RegisterForm extends FormValidator
     {
         $password = empty($this->password) ? Password::generate(8) : $this->password;
 
-        return (bool)$account->updateAttributes(
+        return (bool) $account->updateAttributes(
             [
                 'username' => $this->username,
                 'email' > $this->email,
@@ -216,6 +216,9 @@ final class RegisterForm extends FormValidator
         return $result;
     }
 
+    /**
+     * @psalm-return string[]
+     */
     private function registerTranslate(): array
     {
         return [

@@ -66,6 +66,9 @@ final class ResendForm extends FormValidator
         return $this->username;
     }
 
+    /**
+     * @psalm-return string[]
+     */
     private function resendTranslate(): array
     {
         return [

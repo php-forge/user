@@ -170,27 +170,27 @@ interface ModuleInterface
     /**
      * Return new instance of Module with regex expression for login.
      *
-     * @param int $value Regex expression for login.
+     * @param string $value Regex expression for login.
      *
-     * @return string
+     * @return self
      */
-    public function regexExpLogin(string $value): string;
+    public function regexExpLogin(string $value): self;
 
     /**
      * Return new instance of Module with time token confirm.
      *
      * @param int $value Time token confirm.
      *
-     * @return int
+     * @return self
      */
-    public function timeTokenConfirm(int $value): int;
+    public function timeTokenConfirm(int $value): self;
 
     /**
      * Return new instance of Module with time token recover.
      *
      * @param int $value Time token recover.
      *
-     * @return int
+     * @return self
      */
-    public function timeTokenRecover(int $value): int;
+    public function timeTokenRecover(int $value): self;
 }

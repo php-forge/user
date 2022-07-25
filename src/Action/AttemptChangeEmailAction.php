@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\User\Action;
 
-use Forge\ActiveRecord\Account;
+use Forge\User\ActiveRecord\Account;
 use Forge\User\Repository\AccountRepository;
 use Forge\User\Service\AttemptEmailChangeService;
 use Psr\Http\Message\ResponseInterface;

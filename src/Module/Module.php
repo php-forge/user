@@ -146,7 +146,7 @@ final class Module implements ModuleInterface
         return $new;
     }
 
-    public function regexExpLogin(string $value): string
+    public function regexExpLogin(string $value): self
     {
         $new = clone $this;
         $new->regexExpLogin = $value;
@@ -154,7 +154,7 @@ final class Module implements ModuleInterface
         return $new;
     }
 
-    public function timeTokenConfirm(int $value): int
+    public function timeTokenConfirm(int $value): self
     {
         $new = clone $this;
         $new->timeTokenConfirm = $value;
@@ -162,7 +162,7 @@ final class Module implements ModuleInterface
         return $new;
     }
 
-    public function timeTokenRecover(int $value): int
+    public function timeTokenRecover(int $value): self
     {
         $new = clone $this;
         $new->timeTokenRecover = $value;

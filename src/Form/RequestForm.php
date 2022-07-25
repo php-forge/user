@@ -66,6 +66,9 @@ final class RequestForm extends FormValidator
         return $this->username;
     }
 
+    /**
+     * @psalm-return string[]
+     */
     private function requestTranslate(): array
     {
         return [

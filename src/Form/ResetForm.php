@@ -84,6 +84,9 @@ final class ResetForm extends FormValidator
         };
     }
 
+    /**
+     * @psalm-return string[]
+     */
     private function resetTranslate(): array
     {
         return [

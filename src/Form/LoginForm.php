@@ -61,6 +61,9 @@ final class LoginForm extends FormValidator
         $this->ip = $value;
     }
 
+    /**
+     * @psalm-return string[]
+     */
     private function loginTranslate(): array
     {
         return [

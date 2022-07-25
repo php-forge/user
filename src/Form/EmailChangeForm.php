@@ -53,6 +53,9 @@ final class EmailChangeForm extends FormValidator
         ];
     }
 
+    /**
+     * @psalm-return string[]
+     */
     private function emailChangeTranslate(): array
     {
         return [
