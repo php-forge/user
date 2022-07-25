@@ -12,7 +12,7 @@ return [
     ConnectionInterface::class => [
         'class' => ConnectionPDO::class,
         '__construct()' => [
-            new PDODriver('sqlite:' . dirname(__DIR__, 3) . '/_output/yiitest.sq3'),
+            new PDODriver('sqlite:' . dirname(__DIR__, 3) . '/tests/_output/yiitest.sq3'),
         ],
     ],
 ];

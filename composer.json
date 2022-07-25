@@ -87,28 +87,28 @@
         },
         "config-plugin-environments": {
             "tests": {
-                "params": "../tests/app/config/params.php",
-                "bootstrap": "../tests/app/config/bootstrap.php",
+                "params": "tests/params.php",
+                "bootstrap": "tests/bootstrap.php",
                 "bootstrap-web": [
                     "$bootstrap",
-                    "../tests/app/config/bootstrap-web.php"
+                    "tests/bootstrap-web.php"
                 ],
                 "bootstrap-console": [
                     "$bootstrap",
-                    "../tests/app/config/bootstrap-console.php"
+                    "tests/bootstrap-console.php"
                 ],
                 "common": [
-                    "../tests/app/config/common/*.php"
+                    "tests/common/*.php"
                 ],
                 "web": [
                     "$common",
-                    "../tests/app/config/web/*.php"
+                    "tests//web/*.php"
                 ],
                 "console": [
                     "$common",
-                    "../tests/app/config/console/*.php"
+                    "tests/console/*.php"
                 ],
-                "routes": "../tests/app/config/routes.php"
+                "routes": "tests/routes.php"
             }
         }
     },

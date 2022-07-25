@@ -76,7 +76,7 @@ final class ResetFunctionalCest
 
 
         $I->expectTo('see reset success message.');
-        $I->see('Your password has been changed');
+        $I->see('Your password has been reset.');
     }
 
     private function resetUser(FunctionalTester $I): void

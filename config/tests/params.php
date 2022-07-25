@@ -31,8 +31,8 @@ return [
 
     'yiisoft/aliases' => [
         'aliases' => [
-            '@root' => dirname(__DIR__, 3),
-            '@app' => '@root/tests/app',
+            '@root' => dirname(__DIR__, 2),
+            '@app' => '@root/tests/App',
             '@assets' => '@app/public/assets',
             '@assetsUrl' => '/assets',
             '@images' => '@app/public/image',

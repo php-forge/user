@@ -16,10 +16,10 @@ $language = substr($currentRoute->getUri()->getPath(), 0, 3) === '/en'
     ? 'layout.language.english' : 'layout.language.spanish';
 ?>
 
-<?= NavBar::create($aliases->get('@app/config/widget/menu/navbar.php'))
+<?= NavBar::create($aliases->get('@root/config/tests/widget/menu/navbar.php'))
     ->begin() ?>
 
-    <?= Nav::create($aliases->get('@app/config/widget/menu/navleft.php'))
+    <?= Nav::create($aliases->get('@root/config/tests/widget/menu/navleft.php'))
         ->currentPath($currentRoute->getUri()->getPath())
         ->items(
             [
@@ -41,7 +41,7 @@ $language = substr($currentRoute->getUri()->getPath(), 0, 3) === '/en'
         )
     ?>
 
-    <?= Nav::create($aliases->get('@app/config/widget/menu/navright.php'))
+    <?= Nav::create($aliases->get('@root/config/tests/widget/menu/navright.php'))
         ->currentPath($currentRoute->getUri()->getPath())
         ->items(
             [
