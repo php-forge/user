@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Yiisoft\Yii\Runner\Console\ConsoleApplicationRunner;
+
+/**
+ *  In the above points to where configs will be copied to. The path is relative to where is. The option is read for
+ *  the root package, which is typically an application. Default is "/config".
+ */
+define('YII_CONFIG_DIRECTORY', getenv('YII_CONFIG_DIRECTORY') ?: __DIR__);
+
+/**
+ *  Set debug value for console application runner, for default its `true` add additionally the validation of the
+ *  container-di configurations (debug mode).
+ */
+define('YII_DEBUG', getenv('YII_DEBUG') ?: true);
+
+/**
+ *  Set environment value for web application runner, for default its `null`.
+ *
+ *  @link https://github.com/yiisoft/config#environments
+ */
+define('YII_ENV', getenv('YII_ENV') ?: 'tests');
+
+// Run console application runner
+$consoleRunner = new ConsoleApplicationRunner(YII_CONFIG_DIRECTORY, YII_DEBUG, YII_ENV);
+$consoleRunner->run();

@@ -1,37 +1,133 @@
 {
-    "name": "php-forge/template",
+    "name": "forge/user",
     "type": "library",
-    "description": "_____",
+    "description": "Flexible user registration and authentication module for Yii3",
     "keywords": [
-        "_____"
+        "yii3",
+        "application",
+        "active-record",
+        "user-registration",
+        "user-authentication"
     ],
-    "license": "BSD-3-Clause",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^8.0"
+        "php": ">=8.0",
+        "forge/model": "^1.0@dev",
+        "forge/html-widgets": "^1.0@dev",
+        "forge/service": "^1.0@dev",
+        "forge/yii-form-validator": "^1.0@dev",
+        "yii-extension/helpers": "^1.0@dev",
+        "yiisoft/active-record": "^3.0@dev",
+        "yiisoft/aliases": "^2.0",
+        "yiisoft/auth": "^3.0",
+        "yiisoft/data-response": "^1.0",
+        "yiisoft/definitions": "^2.0",
+        "yiisoft/di": "^1.0",
+        "yiisoft/db": "^3.0@dev",
+        "yiisoft/files": "^1.0",
+        "yiisoft/log-target-file": "^1.0",
+        "yiisoft/log": "^2.0",
+        "yiisoft/middleware-dispatcher": "^2.0",
+        "yiisoft/router": "^1.0",
+        "yiisoft/router-fastroute": "^1.0",
+        "yiisoft/session": "^1.0",
+        "yiisoft/translator-formatter-intl": "^1.0",
+        "yiisoft/translator-message-php": "^1.0",
+        "yiisoft/user": "^1.0",
+        "yiisoft/yii-db-migration": "^1.0@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "roave/infection-static-analysis-plugin": "*",
-        "vimeo/psalm": "*"
+        "codeception/c3": "^2.6",
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-db": "^3.0",
+        "codeception/module-phpbrowser": "^3.0",
+        "nyholm/psr7": "^1.3",
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.13.1",
+        "yiisoft/config": "^1.0",
+        "yiisoft/csrf": "^1.0",
+        "yiisoft/db-sqlite": "^3.0@dev",
+        "yiisoft/translator-extractor": "^1.0",
+        "yiisoft/yii-http": "^1.0",
+        "yiisoft/yii-runner-console": "^1.0",
+        "yiisoft/yii-runner-http": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Template\\": "src"
+            "Forge\\User\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Template\\Tests\\": "tests"
+            "Forge\\User\\Tests\\": "tests"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-main": "1.0.x-dev"
+        },
+        "config-plugin-options": {
+            "source-directory": "config"
+        },
+        "config-plugin": {
+            "params": "params.php",
+            "common": [
+                "common/*.php"
+            ],
+            "console": [
+                "console/*.php"
+            ],
+            "web": [
+                "web/*.php"
+            ],
+            "events": "events.php",
+            "routes": "routes.php"
+        },
+        "config-plugin-environments": {
+            "tests": {
+                "params": "../tests/app/config/params.php",
+                "bootstrap": "../tests/app/config/bootstrap.php",
+                "bootstrap-web": [
+                    "$bootstrap",
+                    "../tests/app/config/bootstrap-web.php"
+                ],
+                "bootstrap-console": [
+                    "$bootstrap",
+                    "../tests/app/config/bootstrap-console.php"
+                ],
+                "common": [
+                    "../tests/app/config/common/*.php"
+                ],
+                "web": [
+                    "$common",
+                    "../tests/app/config/web/*.php"
+                ],
+                "console": [
+                    "$common",
+                    "../tests/app/config/console/*.php"
+                ],
+                "routes": "../tests/app/config/routes.php"
+            }
         }
     },
     "config": {
-        "sort-packages": true
-    }
+        "sort-packages": true,
+        "allow-plugins": {
+            "yiisoft/config": true,
+            "foxy/foxy": true,
+            "codeception/c3": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "d:/php-forge/yii-form-validator"
+        },
+        {
+            "type": "path",
+            "url": "d:/php-forge/service"
+        }
+    ]
 }
