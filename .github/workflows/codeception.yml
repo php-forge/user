@@ -24,10 +24,10 @@ jobs:
           - 8.1
 
     steps:
-      - name: Checkout
+      - name: Checkout.
         uses: actions/checkout@v2
 
-      - name: Install PHP with extensions
+      - name: Install PHP with extensions.
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -36,11 +36,13 @@ jobs:
           coverage: pcov
           tools: composer:v2
 
-      - name: Update composer
+      - name: Update composer.
         run: composer self-update
 
-      - name: Run tests with codeception
-        if: matrix.os != 'ubuntu-latest' || matrix.php != '8.0'
+      - name: Composer update.
+        run: composer update --no-interaction --no-progress --optimize-autoloader --ansi
+
+      - name: Run tests with codeception.
         run: |
           ./yii migrate/up --no-interaction
           php -S 127.0.0.1:8080 -t tests/App/public > tests/_output/runtime/yii.log 2>&1 &

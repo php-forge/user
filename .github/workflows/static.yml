@@ -20,18 +20,21 @@ jobs:
           - 8.1
 
     steps:
-      - name: Checkout
+      - name: Checkout.
         uses: actions/checkout@v2
 
-      - name: Install PHP
+      - name: Install PHP.
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ matrix.php }}"
           tools: composer:v2, cs2pr
           coverage: none
 
-      - name: Update composer
+      - name: Update composer.
         run: composer self-update
 
-      - name: Static analysis
+      - name: Composer update.
+        run: composer update --no-interaction --no-progress --optimize-autoloader --ansi
+
+      - name: Static analysis.
         run: vendor/bin/psalm --shepherd --stats --output-format=checkstyle | cs2pr --graceful-warnings --colorize
