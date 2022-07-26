@@ -78,10 +78,34 @@ final class ModuleMailer implements ModuleMailerInterface
         return $this->translator->translate($this->subjectResend, ['moduleName' => $this->name]);
     }
 
+    public function layoutEmailChange(string $html, string $text): self
+    {
+        $new = clone $this;
+        $new->layoutEmailChange = ['html' => $html, 'text' => $text];
+
+        return $new;
+    }
+
     public function layoutRegister(string $html, string $text): self
     {
         $new = clone $this;
         $new->layoutRegister = ['html' => $html, 'text' => $text];
+
+        return $new;
+    }
+
+    public function layoutRequest(string $html, string $text): self
+    {
+        $new = clone $this;
+        $new->layoutRequest = ['html' => $html, 'text' => $text];
+
+        return $new;
+    }
+
+    public function layoutResend(string $html, string $text): self
+    {
+        $new = clone $this;
+        $new->layoutResend = ['html' => $html, 'text' => $text];
 
         return $new;
     }

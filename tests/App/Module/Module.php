@@ -152,18 +152,24 @@ final class Module extends ActiveRecord implements ModuleInterface
         return $new;
     }
 
-    public function regexExpLogin(string $value): string
+    public function regexExpLogin(string $value): self
     {
         $this->setAttribute('userNameRegExp', $value);
+
+        return $this;
     }
 
-    public function timeTokenConfirm(int $value): int
+    public function timeTokenConfirm(int $value): self
     {
         $this->setAttribute('tokenConfirmWithin', $value);
+
+        return $this;
     }
 
-    public function timeTokenRecover(int $value): int
+    public function timeTokenRecover(int $value): self
     {
         $this->setAttribute('tokenRecoverWithin', $value);
+
+        return $this;
     }
 }

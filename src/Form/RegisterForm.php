@@ -83,8 +83,8 @@ final class RegisterForm extends FormValidator
                     min: 3,
                     max:255,
                     message: $this->getHasLengthErrorMessge(),
-                    tooShortMessage: $this->getHasLengthTooShortErrorMessage(3, $this->username),
-                    tooLongMessage: $this->getHasLengthTooLongErrorMessage(255, $this->username),
+                    lessThanMinMessage: $this->getHasLengthTooShortErrorMessage(3, $this->username),
+                    greaterThanMaxMessage: $this->getHasLengthTooLongErrorMessage(255, $this->username),
                 ),
                 new Regex(pattern: $this->module->getRegexExpLogin()),
                 $this->usernameRules(),
@@ -182,8 +182,8 @@ final class RegisterForm extends FormValidator
                     min: 6,
                     max:72,
                     message: $this->getHasLengthErrorMessge(),
-                    tooShortMessage: $this->getHasLengthTooShortErrorMessage(6, $this->password),
-                    tooLongMessage: $this->getHasLengthTooLongErrorMessage(72, $this->password),
+                    lessThanMinMessage: $this->getHasLengthTooShortErrorMessage(6, $this->password),
+                    greaterThanMaxMessage: $this->getHasLengthTooLongErrorMessage(72, $this->password),
                 ),
             ];
         }

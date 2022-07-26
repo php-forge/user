@@ -90,6 +90,16 @@ interface ModuleMailerInterface
     public function getSubjectResend(): string;
 
     /**
+     * Return new instance of ModuleMailer with layout for email change.
+     *
+     * @param string $html HTML layout.
+     * @param string $text Text layout.
+     *
+     * @return self
+     */
+    public function layoutEmailChange(string $html, string $text): self;
+
+    /**
      * Return new instance of ModuleMailer with layout for registration.
      *
      * @param string $html HTML layout.
