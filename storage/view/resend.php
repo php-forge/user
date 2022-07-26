@@ -53,7 +53,7 @@ $field = Field::create($aliases->get('@bootstrap5/Field.php'));
                     )
                     ->containerClass('d-flex justify-content-center mt-5') ?>
 
-                <div class="d-sm-none" style="margin-top: 22rem">
+                <div class="d-sm-none" style="margin-top:24rem">
                     <?= Button::create($aliases->get('@bootstrap5/Button.php'))
                         ->content($translator->translate('login.link'))
                         ->link($urlGenerator->generate('login'))

@@ -58,31 +58,43 @@ final class Module extends ActiveRecord implements ModuleInterface
     public function enableConfirmEmail(bool $value): self
     {
         $this->setAttribute('confirmation', $value);
+
+        return $this;
     }
 
     public function enableGeneratePassword(bool $value): self
     {
         $this->setAttribute('generatingPassword', $value);
+
+        return $this;
     }
 
     public function enableLoginCaseSensitive(bool $value): self
     {
         $this->setAttribute('userNameCaseSensitive', $value);
+
+        return $this;
     }
 
     public function enablePasswordRecovery(bool $value): self
     {
         $this->setAttribute('passwordRecovery', $value);
+
+        return $this;
     }
 
     public function enableRegister(bool $value): self
     {
         $this->setAttribute('register', $value);
+
+        return $this;
     }
 
     public function enableRememberMe(bool $value): self
     {
         $this->setAttribute('remember_me', $value);
+
+        return $this;
     }
 
     public function getName(): string

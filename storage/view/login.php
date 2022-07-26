@@ -31,6 +31,17 @@ $this->setTitle($translator->translate('login.title'));
 
 $field = Field::create($aliases->get('@bootstrap5/Field.php'));
 $items = [];
+
+if ($module->isPasswordRecovery() && $module->isConfirmEmail()) {
+    $marginButtonRegister = 'margin-top:7rem';
+} elseif ($module->isPasswordRecovery() && !$module->isConfirmEmail()) {
+    $marginButtonRegister = 'margin-top:13rem;';
+} elseif (!$module->isPasswordRecovery() && $module->isConfirmEmail()) {
+    $marginButtonRegister = 'margin-top:9rem;';
+} else {
+    $marginButtonRegister = 'margin-top:15rem;';
+}
+
 ?>
 
 <div class="container py-5">
@@ -91,13 +102,12 @@ $items = [];
                 <?= Tag::ul(['class' => 'list-group list-group-flush mt-3'], $items) ?>
 
                 <?php if ($module->isRegister()) : ?>
-                    <?= Tag::div(
-                        ['class' => 'd-sm-none', 'style' => 'margin-top: 8rem'],
-                        Button::create($aliases->get('@bootstrap5/Button.php'))
+                    <div class="d-sm-none" style=<?= $marginButtonRegister ?>>
+                        <?= Button::create($aliases->get('@bootstrap5/Button.php'))
                             ->content($translator->translate('register.link'))
                             ->link($urlGenerator->generate('register'))
-                            ->render()
-                    ) ?>
+                            ->render() ?>
+                    </div>
                 <?php endif ?>
 
             <?= Form::end() ?>
