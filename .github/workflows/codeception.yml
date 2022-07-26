@@ -44,6 +44,5 @@ jobs:
 
       - name: Run tests with codeception.
         run: |
-          ./yii migrate/up --no-interaction
           php -S 127.0.0.1:8080 -t tests/App/public > tests/_output/runtime/yii.log 2>&1 &
-          vendor/bin/codecept run
+          vendor/bin/codecept run Unit,Acceptance,Functional
