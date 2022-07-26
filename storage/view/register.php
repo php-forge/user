@@ -28,7 +28,6 @@ use Yiisoft\View\WebView;
 
 $this->setTitle($translator->translate('register.title'));
 $field = Field::create($aliases->get('@bootstrap5/Field.php'));
-$marginLoginButton = $module->isGeneratePassword() === false ? 'margin-top:10rem;' : 'margin-top:24rem;';
 ?>
 
 <div class="container py-5">
@@ -62,13 +61,12 @@ $marginLoginButton = $module->isGeneratePassword() === false ? 'margin-top:10rem
                     )
                     ->containerClass('d-flex justify-content-center mt-5') ?>
 
-                <?= Tag::div(
-                    ['class' => 'd-sm-none','style' => $marginLoginButton],
-                    Button::create($aliases->get('@bootstrap5/Button.php'))
+                <div class="d-sm-none" style=<?= $module->isGeneratePassword() === false ? "margin-top:10rem;" : "margin-top:24rem;" ?>>
+                    <?= Button::create($aliases->get('@bootstrap5/Button.php'))
                         ->content($translator->translate('login.link'))
                         ->link($urlGenerator->generate('login'))
-                        ->render(),
-                ) ?>
+                        ->render() ?>
+                </div>
 
             <?= Form::end() ?>
 
