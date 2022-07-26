@@ -32,9 +32,20 @@ interface ModuleMailerInterface
     public function getEmailStrategy(): int;
 
     /**
+     * Return layout for email change.
+     *
+     * @return array
+     *
+     * @psalm-return array<string, string>
+     */
+    public function getLayoutEmailChange(): array;
+
+    /**
      * Return layout for registration.
      *
      * @return array
+     *
+     * @psalm-return array<string, string>
      */
     public function getLayoutRegister(): array;
 
@@ -42,6 +53,8 @@ interface ModuleMailerInterface
      * Return layout for request.
      *
      * @return array
+     *
+     * @psalm-return array<string, string>
      */
     public function getLayoutRequest(): array;
 
@@ -50,6 +63,8 @@ interface ModuleMailerInterface
      * Return layout for resend.
      *
      * @return array
+     *
+     * @psalm-return array<string, string>
      */
     public function getLayoutResend(): array;
 
@@ -83,6 +98,26 @@ interface ModuleMailerInterface
      * @return self
      */
     public function layoutRegister(string $html, string $text): self;
+
+    /**
+     * Return new instance of ModuleMailer with layout for request.
+     *
+     * @param string $html HTML layout.
+     * @param string $text Text layout.
+     *
+     * @return self
+     */
+    public function layoutRequest(string $html, string $text): self;
+
+    /**
+     * Return new instance of ModuleMailer with layout for resend.
+     *
+     * @param string $html HTML layout.
+     * @param string $text Text layout.
+     *
+     * @return self
+     */
+    public function layoutResend(string $html, string $text): self;
 
     /**
      * Return new instance of ModuleMailer with subject for registration.

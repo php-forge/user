@@ -18,9 +18,13 @@ final class ModuleMailer implements ModuleMailerInterface
     public const STRATEGY_SECURE = 2;
 
     private int $emailStrategy = self::STRATEGY_DEFAULT;
+    /** @psalm-var array<string, string> */
     private array $layoutEmailChange = ['html' => 'email-change', 'text' => 'text/email-change'];
+    /** @psalm-var array<string, string> */
     private array $layoutRegister = ['html' => 'welcome', 'text' => 'text/welcome'];
+    /** @psalm-var array<string, string> */
     private array $layoutRequest =  ['html' => 'recovery', 'text' => 'text/recovery'];
+    /** @psalm-var array<string, string> */
     private array $layoutResend = ['html' => 'confirmation', 'text' => 'text/confirmation'];
     private string $subjectEmailChange = 'mailer.email.change';
     private string $subjectRegister = 'mailer.welcome';
@@ -84,10 +88,34 @@ final class ModuleMailer implements ModuleMailerInterface
         return $this->translator->translate($this->subjectResend, ['moduleName' => $this->name]);
     }
 
+    public function layoutEmailChange(string $html, string $text): self
+    {
+        $new = clone $this;
+        $new->layoutEmailChange = ['html' => $html, 'text' => $text];
+
+        return $new;
+    }
+
     public function layoutRegister(string $html, string $text): self
     {
         $new = clone $this;
         $new->layoutRegister = ['html' => $html, 'text' => $text];
+
+        return $new;
+    }
+
+    public function layoutRequest(string $html, string $text): self
+    {
+        $new = clone $this;
+        $new->layoutRequest = ['html' => $html, 'text' => $text];
+
+        return $new;
+    }
+
+    public function layoutResend(string $html, string $text): self
+    {
+        $new = clone $this;
+        $new->layoutResend = ['html' => $html, 'text' => $text];
 
         return $new;
     }
