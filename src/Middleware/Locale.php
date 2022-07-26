@@ -28,6 +28,7 @@ final class Locale implements MiddlewareInterface
     private SessionInterface $session;
     private ResponseFactoryInterface $responseFactory;
     private LoggerInterface $logger;
+    /** @psalm-var string[] */
     private array $locales;
     private bool $enableSaveLocale = true;
     private bool $enableDetectLocale = false;
@@ -36,6 +37,9 @@ final class Locale implements MiddlewareInterface
     private string $sessionName = self::DEFAULT_LOCALE_NAME;
     private ?DateInterval $cookieDuration;
 
+    /**
+     * @psalm-param string[] $locales
+     */
     public function __construct(
         TranslatorInterface $translator,
         UrlGeneratorInterface $urlGenerator,
@@ -97,23 +101,26 @@ final class Locale implements MiddlewareInterface
             [$locale, $country] = $this->detectLocale($request);
         }
 
-        if ($locale === null || $this->isDefaultLocale($locale, $country)) {
+        if ($locale === null || $this->isDefaultLocale((string) $locale, (string) $country)) {
             $this->urlGenerator->setDefaultArgument($this->queryParameterName, null);
             $request = $request->withUri($uri->withPath('/' . $this->defaultLocale . $path));
             return $handler->handle($request);
         }
 
-        $this->urlGenerator->setDefaultArgument($this->queryParameterName, $locale);
+        $this->urlGenerator->setDefaultArgument($this->queryParameterName, (string) $locale);
 
         if ($request->getMethod() === 'GET') {
             return $this->responseFactory
                 ->createResponse(Status::FOUND)
-                ->withHeader(Header::LOCATION, '/' . $locale . $path);
+                ->withHeader(Header::LOCATION, '/' . (string) $locale . $path);
         }
 
         return $handler->handle($request);
     }
 
+    /**
+     * @psalm-return array{0: string|null, 1: string|null}
+     */
     private function getLocaleFromPath(string $path): array
     {
         $parts = [];
@@ -128,7 +135,7 @@ final class Locale implements MiddlewareInterface
         if (preg_match("#^/($pattern)\b(/?)#i", $path, $matches)) {
             $locale = $matches[1];
             [$locale, $country] = $this->parseLocale($locale);
-            if (isset($this->locales[$locale])) {
+            if (null !== $locale && isset($this->locales[$locale])) {
                 $this->logger->info(sprintf("Locale '%s' found in URL", $locale));
                 return [$locale, $country];
             }
@@ -139,7 +146,9 @@ final class Locale implements MiddlewareInterface
 
     private function getLocaleFromRequest(ServerRequestInterface $request): array
     {
+        /** @psalm-var string[] */
         $cookies = $request->getCookieParams();
+        /** @psalm-var string[] */
         $queryParameters = $request->getQueryParams();
 
         if (isset($cookies[$this->sessionName])) {
@@ -162,6 +171,9 @@ final class Locale implements MiddlewareInterface
         return $locale === $this->defaultLocale || ($country !== null && $this->defaultLocale === "$locale-$country");
     }
 
+    /**
+     * @psalm-return non-empty-list<null|string>
+     */
     private function detectLocale(ServerRequestInterface $request): array
     {
         foreach ($request->getHeader(Header::ACCEPT_LANGUAGE) as $language) {
@@ -184,6 +196,9 @@ final class Locale implements MiddlewareInterface
         return $cookie->addToResponse($response);
     }
 
+    /**
+     * @psalm-return non-empty-list<null|string>
+     */
     private function parseLocale(string $locale): array
     {
         if (strpos($locale, '-') !== false) {
@@ -197,6 +212,9 @@ final class Locale implements MiddlewareInterface
         return [$locale, null];
     }
 
+    /**
+     * @psalm-param string[] $locales
+     */
     public function withLocales(array $locales): self
     {
         $new = clone $this;
