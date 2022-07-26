@@ -89,18 +89,18 @@ $items = [];
                 <?php endif ?>
 
                 <?= Tag::ul(
-                    ['class' => 'list-group list-group-flush mt-3'],
-                    $items
-                ) ?>
+                        ['class' => 'list-group list-group-flush mt-3'],
+                        $items
+                    ) ?>
 
                 <?php if ($module->isRegister()) : ?>
                     <?= Tag::div(
-                        ['class' => "d-sm-none", 'style' => 'margin-top: 8rem'],
-                        Button::create($aliases->get('@bootstrap5/Button.php'))
+                    ['class' => 'd-sm-none', 'style' => 'margin-top: 8rem'],
+                    Button::create($aliases->get('@bootstrap5/Button.php'))
                             ->content($translator->translate('register.link'))
                             ->link($urlGenerator->generate('register'))
                             ->render(),
-                    ) ?>
+                ) ?>
                 <?php endif ?>
 
             <?= Form::end() ?>

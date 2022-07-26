@@ -67,7 +67,7 @@ return [
             'pathMap' => [
                 '@layout' => '@layout',
             ],
-        ]
+        ],
     ],
 
     'yiisoft/yii-db-migration' => [

@@ -51,7 +51,7 @@ final class ResendForm extends FormValidator
             'email' => [
                 new Required(message: $this->getRequiredErrorMessage()),
                 new Email(message: $this->getEmailErrorMessage()),
-                $this->emailRules()
+                $this->emailRules(),
             ],
         ];
     }

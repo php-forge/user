@@ -7,7 +7,6 @@ use Forge\Form\Form;
 use Forge\Form\Input\Submit;
 use Forge\Form\Input\Password;
 use Forge\Html\Helper\Encode;
-use Forge\Html\Widgets\Components\Button;
 use Yii\Extension\User\Settings\ModuleSettings;
 use Yiisoft\Csrf\CsrfTokenInterface;
 use Yiisoft\Form\FormModelInterface;

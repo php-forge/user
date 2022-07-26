@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Forge\Html\Helper\Encode;
-use Forge\Html\Widgets\Components\Button;
 use Yiisoft\Translator\TranslatorInterface;
 
 /**
