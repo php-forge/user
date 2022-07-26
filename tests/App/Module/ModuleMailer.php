@@ -11,7 +11,7 @@ final class ModuleMailer implements ModuleMailerInterface
 {
     private array $layoutEmailChange = ['html' => 'email-change', 'text' => 'text/email-change'];
     private array $layoutRegister = ['html' => 'welcome', 'text' => 'text/welcome'];
-    private array $layoutRequest =  ['html' => 'recovery', 'text' => 'text/recovery'];
+    private array $layoutRequest = ['html' => 'recovery', 'text' => 'text/recovery'];
     private array $layoutResend = ['html' => 'confirmation', 'text' => 'text/confirmation'];
     private string $subjectEmailChange = 'mailer.email.change';
     private string $subjectRegister = 'mailer.welcome';

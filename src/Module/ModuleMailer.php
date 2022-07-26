@@ -23,7 +23,7 @@ final class ModuleMailer implements ModuleMailerInterface
     /** @psalm-var array<string, string> */
     private array $layoutRegister = ['html' => 'welcome', 'text' => 'text/welcome'];
     /** @psalm-var array<string, string> */
-    private array $layoutRequest =  ['html' => 'recovery', 'text' => 'text/recovery'];
+    private array $layoutRequest = ['html' => 'recovery', 'text' => 'text/recovery'];
     /** @psalm-var array<string, string> */
     private array $layoutResend = ['html' => 'confirmation', 'text' => 'text/confirmation'];
     private string $subjectEmailChange = 'mailer.email.change';

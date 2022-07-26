@@ -10,7 +10,6 @@ use Forge\Form\Input\Text;
 use Forge\Form\Select;
 use Forge\Form\TextArea;
 use Forge\Html\Helper\Encode;
-use Forge\Html\Widgets\Components\Button;
 use Yii\Extension\Helpers\TimeZone;
 use Yii\Extension\User\Settings\ModuleSettings;
 use Yiisoft\Arrays\ArrayHelper;

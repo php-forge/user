@@ -58,7 +58,6 @@ interface ModuleMailerInterface
      */
     public function getLayoutRequest(): array;
 
-
     /**
      * Return layout for resend.
      *

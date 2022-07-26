@@ -7,7 +7,6 @@ use Forge\Html\Widgets\Components\Button;
 use Forge\Html\Widgets\Components\Nav;
 use Forge\Html\Widgets\Components\NavBar;
 use Yiisoft\Aliases\Aliases;
-use Yiisoft\Auth\IdentityInterface;
 use Yiisoft\Http\Method;
 
 /** @var Aliases $aliases  */
@@ -24,7 +23,7 @@ $language = substr($currentRoute->getUri()->getPath(), 0, 3) === '/en'
         ->items(
             [
                 [
-                    'label' =>  $translator->translate($language),
+                    'label' => $translator->translate($language),
                     'link' => '#',
                     'items' => [
                         [

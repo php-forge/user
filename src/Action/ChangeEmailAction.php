@@ -21,7 +21,6 @@ use Yiisoft\Db\Exception\Exception;
 use Yiisoft\Db\Exception\InvalidArgumentException;
 use Yiisoft\Db\Exception\StaleObjectException;
 use Yiisoft\Http\Method;
-use Yiisoft\Translator\TranslatorInterface;
 use Yiisoft\User\CurrentUser;
 
 final class ChangeEmailAction extends Action

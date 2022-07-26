@@ -62,15 +62,15 @@ $field = Field::create($aliases->get('@bootstrap5/Field.php'));
                     ->containerClass('d-flex justify-content-center mt-5') ?>
 
                 <?= Tag::div(
-                    [
-                        'class' => "d-sm-none",
-                        'style' => $module->isGeneratePassword() === false ? 'margin-top:10rem;' : 'margin-top:24rem;',
-                    ],
-                    Button::create($aliases->get('@bootstrap5/Button.php'))
+                        [
+                            'class' => 'd-sm-none',
+                            'style' => $module->isGeneratePassword() === false ? 'margin-top:10rem;' : 'margin-top:24rem;',
+                        ],
+                        Button::create($aliases->get('@bootstrap5/Button.php'))
                         ->content($translator->translate('login.link'))
                         ->link($urlGenerator->generate('login'))
                         ->render(),
-                ) ?>
+                    ) ?>
 
             <?= Form::end() ?>
 
