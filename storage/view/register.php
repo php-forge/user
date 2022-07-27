@@ -9,23 +9,26 @@ use Forge\Form\Input\Submit;
 use Forge\Form\Input\Text;
 use Forge\Html\Helper\Encode;
 use Forge\Html\Widgets\Components\Button;
-use Yii\Extension\User\Settings\ModuleSettings;
+use Forge\Model\Contract\FormModelContract;
+use Forge\User\Module\ModuleInterface;
+use Yiisoft\Aliases\Aliases;
 use Yiisoft\Csrf\CsrfTokenInterface;
-use Yiisoft\Form\FormModelInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Translator\Translator;
 use Yiisoft\View\WebView;
 
  /**
+  * @var Aliases $aliases
   * @var CsrfTokenInterface $csrfToken
-  * @var FormModelInterface $model
-  * @var ModuleSettings $module
+  * @var FormModelContract $formModel
+  * @var ModuleInterface $module
   * @var Translator $translator
   * @var UrlGeneratorInterface $urlGenerator
   * @var WebView $this
   */
 
 $this->setTitle($translator->translate('register.title'));
+
 $field = Field::create($aliases->get('@bootstrap5/Field.php'));
 ?>
 

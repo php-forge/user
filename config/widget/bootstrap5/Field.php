@@ -8,5 +8,7 @@ return [
         'containerClass()' => ['form-floating flex-grow-1 mb-3'],
         'inputTemplate()' => ['{input}' . PHP_EOL . '{label}'],
         'errorClass()' => ['d-block invalid-feedback'],
+        'invalidClass()' => ['is-invalid'],
+        'validClass()' => ['is-valid'],
     ],
 ];

@@ -18,14 +18,14 @@ interface ModuleMailerInterface
      * STRATEGY_SECURE Confirmation messages will be sent to both new and old user's email addresses and user must click
      * both confirmation links.
      *
-     * @param int $strategy Email change strategy.
+     * @param int $value Email change strategy.
      *
      * @return self
      */
     public function emailStrategy(int $value): self;
 
     /**
-     * Return when email is changed right after user enter's new email address.
+     * Return when email is changed right after user enters new email address.
      *
      * @return int
      */

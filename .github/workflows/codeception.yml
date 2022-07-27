@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install PHP with extensions.
         uses: shivammathur/setup-php@v2
@@ -45,4 +45,18 @@ jobs:
       - name: Run tests with codeception.
         run: |
           php -S 127.0.0.1:8080 -t tests/App/public > tests/_output/runtime/yii.log 2>&1 &
-          vendor/bin/codecept run Unit,Acceptance,Functional
+          vendor/bin/codecept run Unit,Acceptance,Functional  --coverage-xml
+
+      - name: Upload coverage to codecov
+        if: matrix.os == 'ubuntu-latest' && matrix.php == '8.0'
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: tests/_output/coverage.xml
+
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
+        continue-on-error: true
+        with:
+          api-token: ${{secrets.CODACY_API_TOKEN}}
+          coverage-reports: tests/_output/coverage.xml

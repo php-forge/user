@@ -34,8 +34,8 @@ final class AttemptEmailChangeService
     public function run(string $code, Account $account): bool
     {
         $result = true;
-
-        $emailChangeStrategy = $this->module->mailer()->getEmailStrategy();
+        $mailer = $this->module->mailer();
+        $emailChangeStrategy = $mailer->getEmailStrategy();
         $tokenConfirmWithin = $this->module->getTokenConfirm();
         $tokenRecoverWithin = $this->module->getTokenRecover();
 
@@ -62,7 +62,7 @@ final class AttemptEmailChangeService
         if ($token !== null && $this->accountRepository->findByEmail($account->getUnconfirmedEmail()) === null) {
             $token->delete();
 
-            if ($emailChangeStrategy === Account::STRATEGY_SECURE) {
+            if ($emailChangeStrategy === $mailer::STRATEGY_SECURE) {
                 if ($token->getType() === Token::TYPE_CONFIRM_NEW_EMAIL) {
                     $account->flags |= Account::NEW_EMAIL_CONFIRMED;
                 }
@@ -73,7 +73,7 @@ final class AttemptEmailChangeService
             }
 
             if (
-                $emailChangeStrategy === Account::STRATEGY_DEFAULT ||
+                $emailChangeStrategy === $mailer::STRATEGY_DEFAULT ||
                 ($account->flags & Account::NEW_EMAIL_CONFIRMED) && ($account->flags & Account::OLD_EMAIL_CONFIRMED)
             ) {
                 $account->email($account->getUnconfirmedEmail());

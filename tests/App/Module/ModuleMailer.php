@@ -9,6 +9,12 @@ use Yiisoft\Translator\TranslatorInterface;
 
 final class ModuleMailer implements ModuleMailerInterface
 {
+    /** Email is changed right after user enters new email address. */
+    public const STRATEGY_INSECURE = 0;
+    /** Email is changed after user clicks confirmation link sent to his new email address. */
+    public const STRATEGY_DEFAULT = 1;
+    /** Email is changed after user clicks both confirmation links sent to his old and new email addresses. */
+    public const STRATEGY_SECURE = 2;
     private array $layoutEmailChange = ['html' => 'email-change', 'text' => 'text/email-change'];
     private array $layoutRegister = ['html' => 'welcome', 'text' => 'text/welcome'];
     private array $layoutRequest = ['html' => 'recovery', 'text' => 'text/recovery'];

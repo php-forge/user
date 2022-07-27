@@ -86,6 +86,8 @@ final class LoginForm extends FormValidator
 
             if ($result->isValid()) {
                 $this->lastLogout = $this->loginService->getAccountLastLogout();
+            } else {
+                $this->error()->add('login', '');
             }
 
             return $result;

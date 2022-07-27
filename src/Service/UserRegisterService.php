@@ -22,18 +22,11 @@ use Yiisoft\Db\Exception\NotSupportedException;
 
 final class UserRegisterService
 {
-    private ActiveRecordFactory $activeRecordFactory;
-    private ConnectionInterface $db;
-    private LoggerInterface $logger;
-
     public function __construct(
-        ActiveRecordFactory $activeRecordFactory,
-        ConnectionInterface $db,
-        LoggerInterface $logger
+        private ActiveRecordFactory $activeRecordFactory,
+        private ConnectionInterface $db,
+        private LoggerInterface $logger
     ) {
-        $this->activeRecordFactory = $activeRecordFactory;
-        $this->db = $db;
-        $this->logger = $logger;
     }
 
     /**
@@ -95,14 +88,12 @@ final class UserRegisterService
             $transaction->commit();
 
             $registerForm->setValue('userId', $identity->getId());
-
-            $result = true;
         } catch (Exception $e) {
             $transaction->rollBack();
             $this->logger->log(LogLevel::WARNING, $e->getMessage());
             throw $e;
         }
 
-        return $result;
+        return true;
     }
 }
