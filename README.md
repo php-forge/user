@@ -8,7 +8,6 @@
 
 [![codeception](https://github.com/php-forge/user/actions/workflows/codeception.yml/badge.svg)](https://github.com/php-forge/user/actions/workflows/codeception.yml)
 [![codecov](https://codecov.io/gh/php-forge/user/branch/main/graph/badge.svg?token=KB6T5KMGED)](https://codecov.io/gh/php-forge/user)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fphp-forge%2Fuser%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/php-forge/user/main)
 [![static analysis](https://github.com/php-forge/user/workflows/static%20analysis/badge.svg)](https://github.com/php-forge/user/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/php-forge/user/coverage.svg)](https://shepherd.dev/github/php-forge/user)
 
