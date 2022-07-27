@@ -8,10 +8,16 @@ use Forge\User\ActiveRecord\Account;
 use Forge\User\ActiveRecord\Identity;
 use Forge\User\Repository\AccountRepository;
 use Psr\Http\Message\ResponseInterface;
+use Yiisoft\Db\Exception\Exception;
+use Yiisoft\Db\Exception\InvalidArgumentException;
+use Yiisoft\Db\Exception\StaleObjectException;
 use Yiisoft\User\CurrentUser;
 
 final class LogoutAction extends Action
 {
+    /**
+     * @throws Exception|InvalidArgumentException|StaleObjectException
+     */
     public function run(CurrentUser $currentUser, AccountRepository $accountRepository): ResponseInterface
     {
         $account = null;
@@ -23,9 +29,7 @@ final class LogoutAction extends Action
             $account = $accountRepository->findById($id);
         }
 
-        if ($account !== null) {
-            $account->updateAttributes(['last_logout_at' => time()]);
-        }
+        $account?->updateAttributes(['last_logout_at' => time()]);
 
         if ($identity instanceof Identity) {
             $identity->regenerateCookieLoginKey();

@@ -2,7 +2,12 @@
 
 declare(strict_types=1);
 
-/** @var string $content */
+use Yiisoft\View\WebView;
+
+/**
+ * @var string $content
+ * @var WebView $this
+ */
 
 $this->beginPage();
     echo $content;

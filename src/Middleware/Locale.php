@@ -201,11 +201,11 @@ final class Locale implements MiddlewareInterface
      */
     private function parseLocale(string $locale): array
     {
-        if (strpos($locale, '-') !== false) {
+        if (str_contains($locale, '-')) {
             return explode('-', $locale, 2);
         }
 
-        if (isset($this->locales[$locale]) && strpos($this->locales[$locale], '-') !== false) {
+        if (isset($this->locales[$locale]) && str_contains($this->locales[$locale], '-')) {
             return explode('-', $this->locales[$locale], 2);
         }
 

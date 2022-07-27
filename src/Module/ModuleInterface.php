@@ -9,7 +9,7 @@ interface ModuleInterface
     /**
      * Returns new instance of the module with category translator.
      *
-     * @param string $Value The category translator.
+     * @param string $value The category translator.
      *
      * @return self
      */
@@ -100,16 +100,12 @@ interface ModuleInterface
     /**
      * Return when enable or disable confirmation email.
      *
-     * @param int $value Enable or disable confirmation email.
-     *
      * @return bool
      */
     public function isConfirmEmail(): bool;
 
     /**
      * Return when enable or disable generating password.
-     *
-     * @param int $value Enable or disable generating password.
      *
      * @return bool
      */
@@ -118,16 +114,12 @@ interface ModuleInterface
     /**
      * Return when enable or disable login case sensitive.
      *
-     * @param int $value Enable or disable login case sensitive.
-     *
      * @return bool
      */
     public function isLoginCaseSensitive(): bool;
 
     /**
      * Return when enable or disable password recovery.
-     *
-     * @param int $value Enable or disable password recovery.
      *
      * @return bool
      */
@@ -136,16 +128,12 @@ interface ModuleInterface
     /**
      * Return when enable or disable registration.
      *
-     * @param int $value Enable or disable registration.
-     *
      * @return bool
      */
     public function isRegister(): bool;
 
     /**
      * Return when enable or disable remember me.
-     *
-     * @param int $value Enable or disable remember me.
      *
      * @return bool
      */

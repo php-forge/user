@@ -56,7 +56,7 @@ final class ProfileForm extends FormValidator
                 new Url(message: $this->getUrlErrorMessage(), skipOnEmpty: true),
             ],
             'timezone' => [
-                new InRange(message: $this->getInRangeErrorMessage(), range: timezone_identifiers_list()),
+                new InRange(range: timezone_identifiers_list(), message: $this->getInRangeErrorMessage()),
             ],
         ];
     }

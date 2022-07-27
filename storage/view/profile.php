@@ -10,27 +10,32 @@ use Forge\Form\Input\Text;
 use Forge\Form\Select;
 use Forge\Form\TextArea;
 use Forge\Html\Helper\Encode;
+use Forge\Model\Contract\FormModelContract;
+use Forge\User\Module\ModuleInterface;
 use Yii\Extension\Helpers\TimeZone;
-use Yii\Extension\User\Settings\ModuleSettings;
+use Yiisoft\Aliases\Aliases;
 use Yiisoft\Arrays\ArrayHelper;
 use Yiisoft\Csrf\CsrfTokenInterface;
-use Yiisoft\Form\FormModelInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Translator\Translator;
 use Yiisoft\View\WebView;
 
  /**
+  * @var Aliases $aliases
   * @var CsrfTokenInterface $csrfToken
-  * @var FormModelInterface $formModel
-  * @var ModuleSettings $module
+  * @var FormModelContract $formModel
+  * @var ModuleInterface $module
   * @var Translator $translator
   * @var UrlGeneratorInterface $urlGenerator
   * @var WebView $this
   */
 
 $this->setTitle($translator->translate('profile.title'));
+
 $field = Field::create($aliases->get('@bootstrap5/Field.php'));
-$timeZone = ArrayHelper::map((new TimeZone())->getAll(), 'timezone', 'name');
+/** @var iterable[][] $timeZones */
+$timeZones = (new TimeZone())->getAll();
+$timeZone = ArrayHelper::map($timeZones, 'timezone', 'name');
 ?>
 
   <div class="container py-5">

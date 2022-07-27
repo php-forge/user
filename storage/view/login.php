@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Forge\Form\Contract\FormModelContract;
 use Forge\Form\Field;
 use Forge\Form\Form;
 use Forge\Form\Input\Checkbox;
@@ -12,16 +11,19 @@ use Forge\Form\Input\Text;
 use Forge\Html\Helper\Encode;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Components\Button;
-use Yii\Extension\User\Settings\ModuleSettings;
+use Forge\Model\Contract\FormModelContract;
+use Forge\User\Module\ModuleInterface;
+use Yiisoft\Aliases\Aliases;
 use Yiisoft\Csrf\CsrfTokenInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Translator\Translator;
 use Yiisoft\View\WebView;
 
 /**
- * @var CsrfTokenInterface $csrf
- * @var FormModelContract $formModelModel
- * @var ModuleSettings $module
+ * @var Aliases $aliases
+ * @var CsrfTokenInterface $csrfToken
+ * @var FormModelContract $formModel
+ * @var ModuleInterface $module
  * @var Translator $translator
  * @var UrlGeneratorInterface $urlGenerator
  * @var WebView $this
@@ -41,7 +43,6 @@ if ($module->isPasswordRecovery() && $module->isConfirmEmail()) {
 } else {
     $marginButtonRegister = 'margin-top:15rem;';
 }
-
 ?>
 
 <div class="container py-5">

@@ -7,23 +7,27 @@ use Forge\Form\Form;
 use Forge\Form\Input\Submit;
 use Forge\Form\Input\Password;
 use Forge\Html\Helper\Encode;
-use Yii\Extension\User\Settings\ModuleSettings;
+use Forge\Model\Contract\FormModelContract;
+use Forge\User\Module\ModuleMailerInterface;
 use Yiisoft\Csrf\CsrfTokenInterface;
-use Yiisoft\Form\FormModelInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Translator\Translator;
 use Yiisoft\View\WebView;
 
  /**
+  * @var Yiisoft\Aliases\Aliases $aliases
   * @var CsrfTokenInterface $csrfToken
-  * @var FormModelInterface $model
-  * @var ModuleSettings $module
+  * @var string $code
+  * @var FormModelContract $formModel
+  * @var string $id
+  * @var ModuleMailerInterface $module
   * @var Translator $translator
   * @var UrlGeneratorInterface $urlGenerator
   * @var WebView $this
   */
 
 $this->setTitle($translator->translate('reset.title'));
+
 $field = Field::create($aliases->get('@bootstrap5/Field.php'));
 ?>
 

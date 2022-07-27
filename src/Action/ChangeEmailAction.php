@@ -51,15 +51,16 @@ final class ChangeEmailAction extends Action
         $emailChangeForm = new EmailChangeForm($account, $accountRepository, $this->translator());
 
         if ($method === Method::POST && $emailChangeForm->load($body) && $this->validate($emailChangeForm)) {
+            $mailer = $module->mailer();
             $email = $emailChangeForm->getEmail();
 
             if ($email === $account->getEmail() && empty($account->getUnconfirmedEmail())) {
                 $account->unconfirmedEmail('');
             } elseif ($email !== $account->getEmail()) {
-                match ($module->mailer()->getEmailStrategy()) {
-                    Account::STRATEGY_INSECURE => $insecureEmailChangeService->run($email, $account),
-                    Account::STRATEGY_DEFAULT => $defaultEmailChangeService->run($email, $account),
-                    Account::STRATEGY_SECURE => $this->strategySecure(
+                match ($mailer->getEmailStrategy()) {
+                    $mailer::STRATEGY_INSECURE => $insecureEmailChangeService->run($email, $account),
+                    $mailer::STRATEGY_DEFAULT => $defaultEmailChangeService->run($email, $account),
+                    $mailer::STRATEGY_SECURE => $this->strategySecure(
                         $defaultEmailChangeService,
                         $secureEmailChangeService,
                         $email,
@@ -75,6 +76,9 @@ final class ChangeEmailAction extends Action
             ->render('email-change', ['body' => $body, 'formModel' => $emailChangeForm]);
     }
 
+    /**
+     * @throws Exception|InvalidArgumentException|StaleObjectException|Throwable
+     */
     private function strategySecure(
         DefaultEmailChangeService $defaultEmailChangeService,
         SecureEmailChangeService $secureEmailChangeService,

@@ -32,24 +32,14 @@ final class TokenToUrlService
         self::TYPE_CONFIRM_NEW_EMAIL => 'email/attempt',
         self::TYPE_CONFIRM_OLD_EMAIL => 'email/attempt',
     ];
-    private ActiveRecordFactory $activeRecordFactory;
-    private ConnectionInterface $db;
-    private LoggerInterface $logger;
-    private TokenRepository $tokenRepository;
-    private UrlGeneratorInterface $urlGenerator;
 
     public function __construct(
-        ActiveRecordFactory $activeRecordFactory,
-        ConnectionInterface $db,
-        LoggerInterface $logger,
-        TokenRepository $tokenRepository,
-        UrlGeneratorInterface $urlGenerator
+        private ActiveRecordFactory $activeRecordFactory,
+        private ConnectionInterface $db,
+        private LoggerInterface $logger,
+        private TokenRepository $tokenRepository,
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->activeRecordFactory = $activeRecordFactory;
-        $this->db = $db;
-        $this->logger = $logger;
-        $this->tokenRepository = $tokenRepository;
-        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -104,13 +94,12 @@ final class TokenToUrlService
 
             $transaction->commit();
 
-            $result = true;
         } catch (Exception $e) {
             $transaction->rollBack();
             $this->logger->log(LogLevel::WARNING, $e->getMessage());
             throw $e;
         }
 
-        return $result;
+        return true;
     }
 }

@@ -8,15 +8,12 @@ use Yiisoft\Translator\TranslatorInterface;
 
 final class ModuleMailer implements ModuleMailerInterface
 {
-    /** Email is changed right after user enter's new email address. */
+    /** Email is changed right after user enters new email address. */
     public const STRATEGY_INSECURE = 0;
-
     /** Email is changed after user clicks confirmation link sent to his new email address. */
     public const STRATEGY_DEFAULT = 1;
-
     /** Email is changed after user clicks both confirmation links sent to his old and new email addresses. */
     public const STRATEGY_SECURE = 2;
-
     private int $emailStrategy = self::STRATEGY_DEFAULT;
     /** @psalm-var array<string, string> */
     private array $layoutEmailChange = ['html' => 'email-change', 'text' => 'text/email-change'];

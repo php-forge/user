@@ -35,12 +35,6 @@ use Yiisoft\Security\PasswordHasher;
  */
 final class Account extends ActiveRecord
 {
-    /** Email is changed right after account enters new email address. */
-    public const STRATEGY_INSECURE = 0;
-    /** Email is changed after account clicks confirmation link sent to his new email address. */
-    public const STRATEGY_DEFAULT = 1;
-    /** Email is changed after account clicks both confirmation links sent to his old and new email addresses. */
-    public const STRATEGY_SECURE = 2;
     /** Following constants are used on secured email changing process */
     public const NEW_EMAIL_CONFIRMED = 0b10;
     public const OLD_EMAIL_CONFIRMED = 0b1;

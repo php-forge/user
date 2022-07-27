@@ -33,7 +33,7 @@ final class ResendAction extends Action
         ServerRequestInterface $serverRequest,
         TokenToUrlService $tokenToUrlService
     ): ResponseInterface {
-        /** @psalm-var array<string, array<array-key, mixed>|string> $body */
+        /** @psalm-var array<string, array|string> $body */
         $body = $serverRequest->getParsedBody();
         $method = $serverRequest->getMethod();
 
