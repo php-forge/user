@@ -93,7 +93,6 @@ final class TokenToUrlService
             }
 
             $transaction->commit();
-
         } catch (Exception $e) {
             $transaction->rollBack();
             $this->logger->log(LogLevel::WARNING, $e->getMessage());
