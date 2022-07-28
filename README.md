@@ -55,7 +55,7 @@ http://localhost:8080
 
 Agregue la configuración de autenticación de usuario: config/web/auth.php
 
-```shell
+```php
 <?php
 
 declare(strict_types=1);
@@ -94,7 +94,7 @@ return [
 
 Agregue la configuración de conexión de base de datos: config/common/db.php
 
-```shell
+```php
 <?php
 
 declare(strict_types=1);
