@@ -18,7 +18,7 @@ use Yiisoft\User\CurrentUser;
 use Yiisoft\User\Login\Cookie\CookieLoginMiddleware;
 
 return [
-    'locales' => ['en' => 'en-US', 'es' => 'es-ES'],
+    'locales' => ['en' => 'en-US', 'es' => 'es-ES', 'ru' => 'ru-RU'],
 
     'middlewares' => [
         ErrorCatcher::class,

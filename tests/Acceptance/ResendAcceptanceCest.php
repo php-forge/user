@@ -13,7 +13,6 @@ final class ResendAcceptanceCest
         $I->amGoingTo('go to the resend page.');
         $I->amOnPage('/resend');
 
-        $I->expectTo('We were unable to find the page "/resend".');
-        $I->seeResponseCodeIs(404);
+        $I->see('We were unable to find the page "/en/resend".');
     }
 }

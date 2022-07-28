@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 return [
     // layout
-    'layout.language.english' => 'Ingles',
-    'layout.language.spanish' => 'Español',
+    'layout.language.en' => 'Ingles',
+    'layout.language.es' => 'Español',
+    'layout.language.ru' => 'Ruso',
 
     // menu
     'menu.email.change' => 'Cambiar correo',
