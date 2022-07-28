@@ -33,7 +33,6 @@ $lang = Encode::content($currentRoute->getArgument('_language'));
                             'label' => $translator->translate('layout.language.es'),
                             'link' => $urlGenerator->generateFromCurrent(['_language' => 'es'], 'home'),
                         ],
-
                         [
                             'label' => $translator->translate('layout.language.ru'),
                             'link' => $urlGenerator->generateFromCurrent(['_language' => 'ru'], 'home'),
