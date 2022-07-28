@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Forge\Form\Form;
+use Forge\Html\Helper\Encode;
 use Forge\Html\Widgets\Components\Button;
 use Forge\Html\Widgets\Components\Nav;
 use Forge\Html\Widgets\Components\NavBar;
@@ -10,9 +11,7 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\Http\Method;
 
 /** @var Aliases $aliases  */
-
-$language = substr($currentRoute->getUri()->getPath(), 0, 3) === '/en'
-    ? 'layout.language.english' : 'layout.language.spanish';
+$lang = Encode::content($currentRoute->getArgument('_language'));
 ?>
 
 <?= NavBar::create($aliases->get('@root/config/tests/widget/menu/navbar.php'))
@@ -23,16 +22,21 @@ $language = substr($currentRoute->getUri()->getPath(), 0, 3) === '/en'
         ->items(
             [
                 [
-                    'label' => $translator->translate($language),
+                    'label' => $translator->translate('layout.language.' . $lang),
                     'link' => '#',
                     'items' => [
                         [
-                            'label' => $translator->translate('layout.language.english'),
+                            'label' => $translator->translate('layout.language.en'),
                             'link' => $urlGenerator->generateFromCurrent(['_language' => 'en'], 'home'),
                         ],
                         [
-                            'label' => $translator->translate('layout.language.spanish'),
+                            'label' => $translator->translate('layout.language.es'),
                             'link' => $urlGenerator->generateFromCurrent(['_language' => 'es'], 'home'),
+                        ],
+
+                        [
+                            'label' => $translator->translate('layout.language.ru'),
+                            'link' => $urlGenerator->generateFromCurrent(['_language' => 'ru'], 'home'),
                         ],
                     ],
                 ],
@@ -46,22 +50,22 @@ $language = substr($currentRoute->getUri()->getPath(), 0, 3) === '/en'
             [
                 [
                     'label' => $translator->translate('menu.profile'),
-                    'link' => $urlGenerator->generate('profile'),
+                    'link' => $urlGenerator->generate('profile', ['_language' => $lang]),
                     'visible' => !$currentUser->isGuest(),
                 ],
                 [
                     'label' => $translator->translate('menu.email.change'),
-                    'link' => $urlGenerator->generate('email-change'),
+                    'link' => $urlGenerator->generate('email-change', ['_language' => $lang]),
                     'visible' => !$currentUser->isGuest(),
                 ],
                 [
                     'label' => $translator->translate('menu.register'),
-                    'link' => '/register',
+                    'link' => $urlGenerator->generate('register', ['_language' => $lang]),
                     'visible' => $currentUser->isGuest(),
                 ],
                 [
                     'label' => $translator->translate('menu.login'),
-                    'link' => '/login',
+                    'link' => $urlGenerator->generate('login', ['_language' => $lang]),
                     'visible' => $currentUser->isGuest(),
                 ],
             ],
