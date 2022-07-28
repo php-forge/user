@@ -11,7 +11,7 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\Http\Method;
 
 /** @var Aliases $aliases  */
-$lang =  Encode::content($currentRoute->getArgument('_language'));
+$lang = Encode::content($currentRoute->getArgument('_language'));
 ?>
 
 <?= NavBar::create($aliases->get('@root/config/tests/widget/menu/navbar.php'))
