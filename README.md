@@ -2,7 +2,7 @@
     <a href="https://github.com/php-forge/user" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/103309199?s=400&u=ca3561c692f53ed7eb290d3bb226a2828741606f&v=4" height="100px">
     </a>
-    <h1 align="center">PHP Forge - flexible user registration and authentication module for Yii3</h1>
+    <h1 align="center">Modulo flexible de registro de usuario y autenticación para Yii3</h1>
     <br>
 </p>
 
@@ -15,6 +15,104 @@
 
 ```shell
 composer require forge/user
+```
+## Como usar el módulo
+
+### Aplicando migraciones
+
+```shell
+./yii migrate/up --no-interaction
+```
+
+### Uso del servidor php incorporado
+
+```shell
+php -S 127.0.0.1:8080 -t public
+```
+
+### Espere hasta que esté listo, luego abra la siguiente URL en su navegador
+
+```shell
+http://localhost:8080
+```
+
+### Rutas implementadas
+
+```shell
+[/login] - Mostrar formulario de inicio de sesión.
+[/logout] - Cierra la sesión del usuario.
+[/confirm[/{id}/{token}]] - Confirma un usuario (requiere parámetros de consulta de id y token).
+[/profile] - Muestra el formulario de perfil.
+[/register] - Muestra el formulario de inscripción.
+[/request] - Muestra el formulario de solicitud de recuperación.
+[/resend] - Muestra el formulario de reenvío.
+[/reset[/{id}/{token}]] - Muestra el formulario de restablecimiento de contraseña (requiere parámetros de consulta de id y token).
+[/email/change] - Muestra el formulario de cambio de correo electrónico.
+[/email/attempt[/{id}/{token}]] - Confirme el cambio de correo electrónico (requiere parámetros de consulta de id y token).
+```
+
+### Configuración
+
+Agregue la configuración de autenticación de usuario: config/web/auth.php
+
+```shell
+<?php
+
+declare(strict_types=1);
+
+use Forge\User\Repository\IdentityRepository;
+use Psr\Log\LoggerInterface;
+use Yiisoft\Auth\IdentityRepositoryInterface;
+use Yiisoft\Cookies\CookieEncryptor;
+use Yiisoft\Cookies\CookieMiddleware;
+use Yiisoft\Cookies\CookieSigner;
+use Yiisoft\Definitions\Reference;
+use Yiisoft\Session\SessionInterface;
+use Yiisoft\User\CurrentUser;
+use Yiisoft\User\Login\Cookie\CookieLogin;
+
+/** @var array $params */
+
+return [
+    IdentityRepositoryInterface::class => IdentityRepository::class,
+
+    CookieMiddleware::class => static fn (CookieLogin $cookieLogin, LoggerInterface $logger) => new CookieMiddleware(
+        $logger,
+        new CookieEncryptor($params['yiisoft/cookies']['secretKey']),
+        new CookieSigner($params['yiisoft/cookies']['secretKey']),
+        [$cookieLogin->getCookieName() => CookieMiddleware::SIGN],
+    ),
+
+    CurrentUser::class => [
+        'withSession()' => [Reference::to(SessionInterface::class)],
+        'reset' => function () {
+            $this->clear();
+        },
+    ],
+];
+```
+
+Agregue la configuración de conexión de base de datos: config/common/db.php
+
+```shell
+<?php
+
+declare(strict_types=1);
+
+use Yiisoft\Db\Connection\ConnectionInterface;
+use Yiisoft\Db\Sqlite\ConnectionPDO;
+use Yiisoft\Db\Sqlite\PDODriver;
+
+/** @var array $params */
+
+return [
+    ConnectionInterface::class => [
+        'class' => ConnectionPDO::class,
+        '__construct()' => [
+            new PDODriver('sqlite:' . dirname(__DIR__, 2) . '/tests/_output/yiitest.sq3'), // Su ruta de base de datos
+        ],
+    ],
+];
 ```
 
 ## Análisis estático
