@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Forge\Form\Form;
+use Forge\Html\Helper\Encode;
 use Forge\Html\Widgets\Components\Button;
 use Forge\Html\Widgets\Components\Nav;
 use Forge\Html\Widgets\Components\NavBar;
@@ -10,7 +11,7 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\Http\Method;
 
 /** @var Aliases $aliases  */
-$lang = $currentRoute->getArgument('_language');
+$lang =  Encode::content($currentRoute->getArgument('_language'));
 ?>
 
 <?= NavBar::create($aliases->get('@root/config/tests/widget/menu/navbar.php'))
