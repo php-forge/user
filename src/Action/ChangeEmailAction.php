@@ -48,7 +48,7 @@ final class ChangeEmailAction extends Action
             return $requestHandler->handle($serverRequest);
         }
 
-        $emailChangeForm = new EmailChangeForm($account, $accountRepository, $this->translator());
+        $emailChangeForm = new EmailChangeForm($account, $accountRepository, $this->translator);
 
         if ($method === Method::POST && $emailChangeForm->load($body) && $this->validate($emailChangeForm)) {
             $mailer = $module->mailer();
@@ -71,9 +71,12 @@ final class ChangeEmailAction extends Action
             }
         }
 
-        return $this->view()
+        return $this->viewRenderer
             ->withViewPath('@user/storage/view')
-            ->render('email-change', ['body' => $body, 'formModel' => $emailChangeForm]);
+            ->render(
+                'email-change',
+                ['body' => $body, 'formModel' => $emailChangeForm, 'translator' => $this->translator],
+            );
     }
 
     /**

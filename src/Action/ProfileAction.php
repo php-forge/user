@@ -13,7 +13,6 @@ use Yiisoft\Db\Exception\InvalidArgumentException;
 use Yiisoft\Db\Exception\StaleObjectException;
 use Yiisoft\Http\Method;
 use Yiisoft\Session\Flash\Flash;
-use Yiisoft\Translator\TranslatorInterface;
 use Yiisoft\User\CurrentUser;
 
 final class ProfileAction extends Action
@@ -25,18 +24,14 @@ final class ProfileAction extends Action
         CurrentUser $currentUser,
         Flash $flash,
         ProfileRepository $profileRepository,
-        ServerRequestInterface $serverRequest,
-        TranslatorInterface $translator
+        ServerRequestInterface $serverRequest
     ): ResponseInterface {
         /** @psalm-var array<string, array|string> */
         $body = $serverRequest->getParsedBody();
         $method = $serverRequest->getMethod();
 
-        // Set default category translation.
-        $translator = $translator->withCategory('user');
-
         // Create the form.
-        $profileForm = new ProfileForm($profileRepository, $translator);
+        $profileForm = new ProfileForm($profileRepository, $this->translator);
 
         $id = $currentUser->getId();
 
@@ -53,12 +48,12 @@ final class ProfileAction extends Action
         ) {
             $flash->add(
                 'forge.user',
-                ['content' => $translator->translate('profile.updated'), 'type' => 'success'],
+                ['content' => $this->translator->translate('profile.updated'), 'type' => 'success'],
             );
         }
 
-        return $this->view()
+        return $this->viewRenderer
             ->withViewPath('@user/storage/view')
-            ->render('profile', ['body' => $body, 'formModel' => $profileForm]);
+            ->render('profile', ['body' => $body, 'formModel' => $profileForm, 'translator' => $this->translator]);
     }
 }
