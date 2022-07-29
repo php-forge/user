@@ -42,7 +42,7 @@ final class RegisterAction extends Action
         $ip = (string)$serverRequest->getServerParams()['REMOTE_ADDR'];
 
         // Create the form.
-        $registerForm = new RegisterForm($accountRepository, $module, $this->translator());
+        $registerForm = new RegisterForm($accountRepository, $module, $this->translator);
 
         $registerForm->ip($ip);
 
@@ -76,8 +76,8 @@ final class RegisterAction extends Action
                     ->send($email, $params)
             ) {
                 $message = $module->isConfirmEmail()
-                    ? $this->translator()->translate('register.unconfirmed')
-                    : $this->translator()->translate('register.confirmed');
+                    ? $this->translator->translate('register.unconfirmed')
+                    : $this->translator->translate('register.confirmed');
                 $flash->add('forge.user', ['content' => $message, 'type' => 'info']);
             }
 
@@ -89,11 +89,11 @@ final class RegisterAction extends Action
         }
 
         if ($module->isRegister()) {
-            return $this->view()
+            return $this->viewRenderer
                 ->withViewPath('@user/storage/view')
                 ->render(
                     'register',
-                    ['body' => $body, 'formModel' => $registerForm, 'module' => $module],
+                    ['body' => $body, 'formModel' => $registerForm, 'module' => $module, 'translator' => $this->translator],
                 );
         }
 

@@ -32,7 +32,7 @@ final class LoginAction extends Action
         $method = $serverRequest->getMethod();
 
         // Create the form.
-        $loginForm = new LoginForm($loginService, $module, $this->translator());
+        $loginForm = new LoginForm($loginService, $module, $this->translator);
         $ip = (string) $serverRequest->getServerParams()['REMOTE_ADDR'];
         $loginForm->ip($ip);
 
@@ -40,8 +40,8 @@ final class LoginAction extends Action
             $identity = $loginService->getIdentity();
             $lastLogin = $loginForm->getLastLogout() > 0
                 ? date('Y-m-d G:i:s', $loginForm->getLastLogout())
-                : $this->translator()->translate('login.welcome');
-            $content = $this->translator()->translate('login.sign.in', ['lastLogin' => $lastLogin]);
+                : $this->translator->translate('login.welcome');
+            $content = $this->translator->translate('login.sign.in', ['lastLogin' => $lastLogin]);
             $flash->add('forge.user', ['content' => $content, 'type' => 'success']);
 
             if ($identity instanceof CookieLoginIdentityInterface && $loginForm->getAttributeValue('rememberMe')) {
@@ -51,8 +51,11 @@ final class LoginAction extends Action
             return $this->redirect('home');
         }
 
-        return $this->view()
+        return $this->viewRenderer
             ->withViewPath('@user/storage/view')
-            ->render('login', ['body' => $body, 'formModel' => $loginForm, 'module' => $module]);
+            ->render(
+                'login',
+                ['body' => $body, 'formModel' => $loginForm, 'module' => $module, 'translator' => $this->translator]
+            );
     }
 }

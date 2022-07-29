@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Forge\User\Tests\App;
 
-use Forge\Service\View;
+use Yiisoft\Yii\View\ViewRenderer;
 use Psr\Http\Message\ResponseInterface;
 
 final class HomeAction
 {
-    public function run(View $view): ResponseInterface
+    public function run(ViewRenderer $viewRenderer): ResponseInterface
     {
-        return $view->withViewPath('@user/tests/App/storage/view')->render('home');
+        return $viewRenderer->withViewPath('@user/tests/App/storage/view')->render('home');
     }
 }

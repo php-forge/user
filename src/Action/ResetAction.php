@@ -41,7 +41,7 @@ final class ResetAction extends Action
         $code = $currentRoute->getArgument('code');
 
         // Create the form
-        $resetForm = new ResetForm($this->translator());
+        $resetForm = new ResetForm($this->translator);
 
         if ($id === null || ($account = $accountRepository->findById($id)) === null || $code === null) {
             return $requestHandler->handle($serverRequest);
@@ -67,13 +67,22 @@ final class ResetAction extends Action
         ) {
             $token->delete();
             $account->passwordHashUpdate($resetForm->getPassword());
-            $flash->add('forge.user', ['content' => $this->translator()->translate('reset.recovery.success'), 'type' => 'success']);
+            $flash->add('forge.user', ['content' => $this->translator->translate('reset.recovery.success'), 'type' => 'success']);
 
             return $this->redirect('login');
         }
 
-        return $this->view()
+        return $this->viewRenderer
             ->withViewPath('@user/storage/view')
-            ->render('reset', ['body' => $body, 'code' => $code, 'formModel' => $resetForm, 'id' => $id]);
+            ->render(
+                'reset',
+                [
+                    'body' => $body,
+                    'code' => $code,
+                    'formModel' => $resetForm,
+                    'id' => $id,
+                    'translator' => $this->translator,
+                ],
+            );
     }
 }

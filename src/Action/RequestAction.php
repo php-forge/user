@@ -39,7 +39,7 @@ final class RequestAction extends Action
         $method = $serverRequest->getMethod();
 
         // Create the form.
-        $requestForm = new RequestForm($accountRepository, $this->translator());
+        $requestForm = new RequestForm($accountRepository, $this->translator);
 
         if ($method === Method::POST && $requestForm->load($body) && $this->validate($requestForm)) {
             $name = $module->getName();
@@ -59,7 +59,7 @@ final class RequestAction extends Action
                 $flash->add(
                     'forge.user',
                     [
-                        'content' => $this->translator()->translate('request.sent'),
+                        'content' => $this->translator->translate('request.sent'),
                         'type' => 'info',
                     ],
                 );
@@ -69,9 +69,17 @@ final class RequestAction extends Action
         }
 
         if ($module->isPasswordRecovery()) {
-            return $this->view()
+            return $this->viewRenderer
                 ->withViewPath('@user/storage/view')
-                ->render('request', ['body' => $body, 'formModel' => $requestForm, 'module' => $module]);
+                ->render(
+                    'request',
+                    [
+                        'body' => $body,
+                        'formModel' => $requestForm,
+                        'module' => $module,
+                        'translator' => $this->translator,
+                    ],
+                );
         }
 
         return $requestHandler->handle($serverRequest);

@@ -37,7 +37,7 @@ final class ResendAction extends Action
         $body = $serverRequest->getParsedBody();
         $method = $serverRequest->getMethod();
 
-        $resendForm = new ResendForm($accountRepository, $this->translator());
+        $resendForm = new ResendForm($accountRepository, $this->translator);
 
         if ($method === Method::POST && $resendForm->load($body) && $this->validate($resendForm)) {
             $name = $module->getName();
@@ -58,7 +58,7 @@ final class ResendAction extends Action
                 $flash->add(
                     'forge.user',
                     [
-                        'content' => $this->translator()->translate('resend.recovery.success', ['email' => $email]),
+                        'content' => $this->translator->translate('resend.recovery.success', ['email' => $email]),
                         'type' => 'warning',
                     ],
                 );
@@ -68,9 +68,9 @@ final class ResendAction extends Action
         }
 
         if ($module->isConfirmEmail()) {
-            return $this->view()
+            return $this->viewRenderer
                 ->withViewPath('@user/storage/view')
-                ->render('resend', ['body' => $body, 'formModel' => $resendForm]);
+                ->render('resend', ['body' => $body, 'formModel' => $resendForm, 'translator' => $this->translator]);
         }
 
         return $requestHandler->handle($serverRequest);

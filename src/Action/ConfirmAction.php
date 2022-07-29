@@ -73,7 +73,7 @@ final class ConfirmAction extends Action
 
             $flash->add(
                 'forge.user',
-                ['content' => $this->translator()->translate('confirm.email.success'), 'type' => 'success'],
+                ['content' => $this->translator->translate('confirm.email.success'), 'type' => 'success'],
             );
         }
 
