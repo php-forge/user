@@ -25,7 +25,7 @@
         "yiisoft/db": "^3.0@dev",
         "yiisoft/definitions": "^2.0",
         "yiisoft/di": "^1.0",
-        "yiisoft/files": "^1.0",
+        "yiisoft/files": "^2.0",
         "yiisoft/log-target-file": "^2.0",
         "yiisoft/log": "^2.0",
         "yiisoft/middleware-dispatcher": "^2.0",
