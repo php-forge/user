@@ -25,7 +25,7 @@ return [
     'form.attribute.password.verify' => 'Проверка пароля',
     'form.attribute.password' => 'Пароль',
     'form.attribute.public.email' => 'Публичная электронная почта',
-    'form.attribute.rememberMe' => 'Помни меня',
+    'form.attribute.rememberMe' => 'Запомнить',
     'form.attribute.timezone' => 'Часовой пояс',
     'form.attribute.username' => 'Имя пользователя',
     'form.attribute.website' => 'Сайт',
