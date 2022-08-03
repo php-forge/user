@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Forge\User\Middleware;
+namespace Forge\User\Tests\App\Middleware;
 
 use DateInterval;
 use Psr\Http\Message\ResponseFactoryInterface;
