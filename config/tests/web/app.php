@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Forge\User\Middleware\Locale;
+use Forge\User\Tests\App\Middleware\Locale;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Definitions\Reference;
 use Yiisoft\Middleware\Dispatcher\MiddlewareDispatcher;

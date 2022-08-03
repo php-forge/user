@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Forge\User\Middleware\Locale;
+use Forge\User\Tests\App\Middleware\Locale;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Cookies\CookieMiddleware;
 use Yiisoft\Csrf\CsrfTokenInterface;

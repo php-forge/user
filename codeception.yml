@@ -19,5 +19,3 @@ coverage:
     whitelist:
         include:
             - src/*
-        exclude:
-            - src/Middleware/Locale.php
